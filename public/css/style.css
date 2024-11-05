@@ -1,0 +1,61 @@
+#fight{
+max-width: 500px;
+    margin: auto; 
+}
+
+#bg {
+        position:fixed;
+        z-index: -1;
+        top:0;
+        left:0; 
+        min-width:100%;
+        min-height:100%;
+}
+
+
+
+
+
+#maindiv{
+    overflow: scroll;
+    overflow-y: hidden;
+    width: 80%;
+    height: 300px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.nftimg{
+    width: 150px;
+    height:80%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.nftimg:hover{
+    border: 1px solid red;
+    transition-duration: 1s;
+    transform: scale(0.9,0.9);
+}
+
+#tablecontainer {
+    border: 1px solid black;
+    background: url("./assets/cardframe.png");
+    width: auto;
+    height: auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.itemwrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    height: 90%;
+}
