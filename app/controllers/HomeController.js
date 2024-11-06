@@ -13,18 +13,14 @@ exports.updateData = (req, res) => {
 		const entryId = req.body.id;
 		const editedValue = req.body.editedValue;
 		var data = {
-			// id: id,
+			id: id,
 			[req.body.columnName]: editedValue,  // Use computed property name syntax
 		};
 		User.update(data, {
 			where: { id: entryId }
 		})
 			.then(result => {
-				//   res.send({
-				// 	amount: req.params.amount,
-				// 	level: req.params.level,
-				// 	battleCount: req.params.battleCount,
-				// }) 
+				 
 				res.status(200).send({
 					message: "Added " + result
 				});
