@@ -6,6 +6,7 @@ const express = require('express');
 const flash = require('express-flash');
 const bodyParser = require('body-parser');
 const expressHbs = require('express-handlebars');
+const mysql2 = require('mysql2');
 
 const app = express();
 const csrfProtection = csrf();
