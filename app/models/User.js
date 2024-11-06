@@ -20,7 +20,7 @@ const User = sequelize.define('api', {
 			allowNull: true
 		},
 		notes: {
-			type: DataTypes.DATE,
+			type: DataTypes.STRING,
 			allowNull:true
 		}
   	}
