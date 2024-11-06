@@ -2,7 +2,7 @@ const User = require('../models/User');
  
 
 exports.indexFun = (req, res, next) => {
-	res.type('text'); // Sets the Content-Type header to text/plain
+	res.type('html'); // Sets the Content-Type header to text/plain
 	res.send('Home');
 }
 exports.updateData = (req, res) => {
