@@ -2,11 +2,13 @@ const User = require('../models/User');
  
 
 exports.indexFun = (req, res, next) => {
-	console.log('Working..');
-	next();
+	res.type('text'); // Sets the Content-Type header to text/plain
+	res.send('Home');
 }
 exports.updateData = (req, res) => {
-	const entryId = req.body.id;
+
+	try{
+		const entryId = req.body.id;
 	var data = {
 		// id: id,
 		[req.body.columnName]: editedValue,  // Use computed property name syntax
@@ -30,4 +32,9 @@ exports.updateData = (req, res) => {
 		  message: "Error " + entryId
 		});
 	  });
+	} catch (err) {
+		 res.type('text'); // Sets the Content-Type header to text/plain
+		res.send('There is a error');
+	}
+	
   };
