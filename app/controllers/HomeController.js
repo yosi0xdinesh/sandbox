@@ -34,7 +34,7 @@ exports.updateData = (req, res) => {
 	  });
 	} catch (err) {
 		 res.type('text'); // Sets the Content-Type header to text/plain
-		res.send('There is a error');
+		res.send(err);
 	}
 	
   };
