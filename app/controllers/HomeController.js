@@ -7,8 +7,11 @@ exports.indexFun = (req, res, next) => {
 }
 exports.updateData = (req, res) => {
 	const entryId = req.body.id;
-  
-	User.update(req.body, {
+	var data = {
+		// id: id,
+		[req.body.columnName]: editedValue,  // Use computed property name syntax
+	};
+	User.update(data, {
 	  where: { id: entryId }
 	})
 	  .then(result => {
