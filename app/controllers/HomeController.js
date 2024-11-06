@@ -7,7 +7,9 @@ exports.indexFun = (req, res, next) => {
 }
 exports.updateData = (req, res) => {
 
-	console.log(req.body);
+	// console.log(req.body);
+
+	try{
 		const entryId = req.body.id;
 		const editedValue = req.body.editedValue;
 		var data = {
@@ -33,6 +35,12 @@ exports.updateData = (req, res) => {
 					message: "Error " + result
 				});
 			});
+	} catch(err){
+		res.status(500).send({
+            message: "Error in updateData: " + err.message
+        });
+	}
+		
 	 
 
 };
