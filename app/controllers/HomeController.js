@@ -9,6 +9,7 @@ exports.updateData = (req, res) => {
 
  
 		const entryId = req.body.id;
+		const editedValue = req.body.editedValue;
 		var data = {
 			// id: id,
 			[req.body.columnName]: editedValue,  // Use computed property name syntax
