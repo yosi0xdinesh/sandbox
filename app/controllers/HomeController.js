@@ -7,7 +7,7 @@ exports.indexFun = (req, res, next) => {
 }
 exports.updateData = (req, res) => {
 
-	console.log(req);
+	console.log(req.body);
 		const entryId = req.body.id;
 		const editedValue = req.body.editedValue;
 		var data = {
