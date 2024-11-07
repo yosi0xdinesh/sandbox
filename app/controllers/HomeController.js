@@ -1,5 +1,6 @@
 
 const Knex = require('knex');
+require('dotenv').config(); // This loads the variables from .env file into process.env
 
 const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } = process.env;
 
