@@ -25,7 +25,7 @@ exports.indexFun = (req, res) => {
 exports.createUser = (req, res) => {
     const { name, email, password } = req.body;
 
-    knex('users') // Assuming 'users' is the table name in your DB
+    knex('apis') // Assuming 'apis' is the table name in your DB
         .insert({ name, email, password })
         .returning('*') // This returns the newly inserted user
         .then(user => {
@@ -43,7 +43,7 @@ exports.createUser = (req, res) => {
 
 // Retrieve all users
 exports.getAllUsers = (req, res) => {
-    knex('users') // Assuming 'users' is the table name
+    knex('apis') // Assuming 'apis' is the table name
         .select('*')
         .then(users => {
             res.status(200).send(users);
@@ -59,7 +59,7 @@ exports.getAllUsers = (req, res) => {
 exports.getUserById = (req, res) => {
     const userId = req.params.id;
 
-    knex('users') // Assuming 'users' is the table name
+    knex('apis') // Assuming 'apis' is the table name
         .where({ id: userId })
         .first() // This will return only one record
         .then(user => {
@@ -86,7 +86,7 @@ exports.updateData = (req, res) => {
 
         let data = req.body;
 
-        knex('users') // Assuming 'users' is the table name
+        knex('apis') // Assuming 'apis' is the table name
             .where({ id: entryId })
             .update(data)
             .then(result => {
@@ -115,7 +115,7 @@ exports.updateData = (req, res) => {
 exports.deleteUser = (req, res) => {
     const userId = req.params.id;
 
-    knex('users') // Assuming 'users' is the table name
+    knex('apis') // Assuming 'apis' is the table name
         .where({ id: userId })
         .del() // This will delete the user
         .then(result => {
