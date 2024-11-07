@@ -81,12 +81,10 @@ exports.getUserById = (req, res) => {
 exports.updateData = (req, res) => {
     try {
         const entryId = req.body.id;
-        const editedValue = req.body.editedValue;
-        const columnName = req.body.columnName;
+        // const editedValue = req.body.editedValue;
+        // const columnName = req.body.columnName;
 
-        let data = {
-            [columnName]: editedValue,
-        };
+        let data = req.body;
 
         knex('users') // Assuming 'users' is the table name
             .where({ id: entryId })
