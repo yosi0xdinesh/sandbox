@@ -16,14 +16,14 @@ const knex = Knex({
 }); 
 
 // Display a simple home message
-exports.indexFun = (req, res) => {
+exports.indexFun = async (req, res) => {
 
 	console.log("DB_HOST: ", process.env.DB_HOST);
 	console.log("DB_PORT: ", process.env.DB_PORT);
 	console.log("DB_DATABASE: ", process.env.DB_DATABASE);
 	
 	// Test the Knex connection
-	knex.raw('SELECT 1+1 AS result')
+	await knex.raw('SELECT 1+1 AS result')
 		.then(() => console.log('Database connected successfully'))
 		.catch((err) => console.error('Database connection failed: ', err.message));
 };
@@ -85,7 +85,7 @@ exports.getUserById = (req, res) => {
 };
 
 // Update user data
-exports.updateData = (req, res) => {
+exports.updateData = async (req, res) => {
     try {
         const entryId = req.body.id;
         const editedValue = req.body.editedValue;
@@ -95,7 +95,7 @@ exports.updateData = (req, res) => {
             [columnName]: editedValue,
         };
 
-        knex('users') // Assuming 'users' is the table name
+        await knex('users') // Assuming 'users' is the table name
             .where({ id: entryId })
             .update(data)
             .then(result => {
