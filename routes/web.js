@@ -3,7 +3,7 @@ const router = express.Router();
 const HomeController = require('../app/controllers/HomeController');
 
 
-router.post('/changeData', HomeController.updateData);
+router.put('/changeData', HomeController.updateData);
 router.get('/getUsers', HomeController.getAllUsers);
 router.get('/', HomeController.indexFun);
 
