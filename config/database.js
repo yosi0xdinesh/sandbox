@@ -1,4 +1,6 @@
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
+const env = require('dotenv');
+const mysql = require('mysql');
 const Knex = require('knex');
 // const axios = require('axios');
 // const { formatInTimeZone } = require('date-fns-tz');
@@ -6,7 +8,8 @@ const Knex = require('knex');
 // const chalk = require('chalk');
 
 
-dotenv.config();
+// dotenv.config();
+env.config();
 
 const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } = process.env;
 
@@ -26,7 +29,6 @@ const knex = Knex({
 // const env = require('dotenv');
 // const mysql = require('mysql');
 
-// env.config();
 
 // const DB_HOST = process.env.DB_HOST
 
