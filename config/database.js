@@ -1,44 +1,22 @@
-// const dotenv = require('dotenv');
-const env = require('dotenv');
-const mysql = require('mysql');
+// Import dotenv to handle environment variables
+require('dotenv').config(); // This loads the variables from .env file into process.env
+
 const Knex = require('knex');
-// const axios = require('axios');
-// const { formatInTimeZone } = require('date-fns-tz');
-// const { subMinutes } = require('date-fns');
-// const chalk = require('chalk');
 
-
-// dotenv.config();
-env.config();
-
+// Destructure environment variables from process.env
 const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } = process.env;
 
+// Create and configure Knex instance with MySQL client
 const knex = Knex({
     client: 'mysql',
     connection: {
-        host: DATABASE_HOST,
-        user: DATABASE_USER,
-        port: DATABASE_PORT,
-        password: DATABASE_PASSWORD,
-        database: DATABASE_NAME
+        host: DATABASE_HOST, // Database host
+        user: DATABASE_USER, // Database user
+        port: DATABASE_PORT, // Database port
+        password: DATABASE_PASSWORD, // Database password
+        database: DATABASE_NAME // Database name
     }
 });
 
-
-// const Sequelize = require('sequelize');
-// const env = require('dotenv');
-// const mysql = require('mysql');
-
-
-// const DB_HOST = process.env.DB_HOST
-
-// const DB_PORT = process.env.DB_PORT
-// const DB_DATABASE = process.env.DB_DATABASE
-// const DB_USERNAME = process.env.DB_USERNAME
-// const DB_PASSWORD = process.env.DB_PASSWORD
-// const sequelize = new Sequelize(DB_DATABASE, DB_USERNAME, DB_PASSWORD, {
-//   dialect: 'mysql',
-//   host: DB_HOST
-// });
-
+// Export knex instance to use in other parts of the app
 module.exports = knex;
