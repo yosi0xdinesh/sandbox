@@ -1,6 +1,5 @@
 
 const Knex = require('knex');
-require('dotenv').config(); // This loads the variables from .env file into process.env
 
 const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } = process.env;
 
@@ -16,16 +15,9 @@ const knex = Knex({
 }); 
 
 // Display a simple home message
-exports.indexFun = async (req, res) => {
-
-	console.log("DB_HOST: ", process.env.DB_HOST);
-	console.log("DB_PORT: ", process.env.DB_PORT);
-	console.log("DB_DATABASE: ", process.env.DB_DATABASE);
-	
-	// Test the Knex connection
-	await knex.raw('SELECT 1+1 AS result')
-		.then(() => console.log('Database connected successfully'))
-		.catch((err) => console.error('Database connection failed: ', err.message));
+exports.indexFun = (req, res) => {
+    res.type('html');
+    res.send('Home');
 };
 
 // Create a new user
@@ -85,7 +77,7 @@ exports.getUserById = (req, res) => {
 };
 
 // Update user data
-exports.updateData = async (req, res) => {
+exports.updateData = (req, res) => {
     try {
         const entryId = req.body.id;
         const editedValue = req.body.editedValue;
@@ -95,7 +87,7 @@ exports.updateData = async (req, res) => {
             [columnName]: editedValue,
         };
 
-        await knex('users') // Assuming 'users' is the table name
+        knex('users') // Assuming 'users' is the table name
             .where({ id: entryId })
             .update(data)
             .then(result => {
