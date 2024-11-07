@@ -3,16 +3,17 @@ require('dotenv').config(); // This loads the variables from .env file into proc
 
 const Knex = require('knex');
 
-const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } = process.env;
+
+const { DB_HOST, DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_PORT } = process.env;
 
 const knex = Knex({
     client: 'mysql',
     connection: {
-        host: DATABASE_HOST, // Database host
-        user: DATABASE_USER, // Database user
-        port: DATABASE_PORT, // Database port
-        password: DATABASE_PASSWORD, // Database password
-        database: DATABASE_NAME // Database name
+        host: DB_HOST, // Database host
+        user: DB_USERNAME, // Database user
+        port: DB_PORT, // Database port
+        password: DB_PASSWORD, // Database password
+        database: DB_DATABASE // Database name
     }
 }); 
 
