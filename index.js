@@ -1,6 +1,6 @@
 const path = require('path');
 // load dependencies
-// const env = require('dotenv');
+const env = require('dotenv');
 const csrf = require('csurf');
 const express = require('express');
 const flash = require('express-flash');
@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const expressHbs = require('express-handlebars');
 const mysql2 = require('mysql2');
 const Knex = require('knex');
-require('dotenv').config(); // This loads the variables from .env file into process.env
+// require('dotenv').config(); // This loads the variables from .env file into process.env
 
 const app = express();
 const csrfProtection = csrf();
