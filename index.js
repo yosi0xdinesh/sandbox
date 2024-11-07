@@ -39,4 +39,8 @@ app.use(express.json())
 
 app.use(webRoutes);
 // app.use(errorController.pageNotFound);
+
+ 
+		app.listen(process.env.PORT);
+		console.log("App listening on port " + process.env.PORT);
  
