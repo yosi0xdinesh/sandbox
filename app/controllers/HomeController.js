@@ -16,8 +16,15 @@ const knex = Knex({
 
 // Display a simple home message
 exports.indexFun = (req, res) => {
-    res.type('html');
-    res.send('Home');
+
+	console.log("DB_HOST: ", process.env.DB_HOST);
+	console.log("DB_PORT: ", process.env.DB_PORT);
+	console.log("DB_DATABASE: ", process.env.DB_DATABASE);
+	
+	// Test the Knex connection
+	knex.raw('SELECT 1+1 AS result')
+		.then(() => console.log('Database connected successfully'))
+		.catch((err) => console.error('Database connection failed: ', err.message));
 };
 
 // Create a new user
