@@ -23,10 +23,10 @@ exports.indexFun = (req, res) => {
 
 // Create a new user
 exports.createUser = (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, status, notes } = req.body;
 
     knex('apis') // Assuming 'apis' is the table name in your DB
-        .insert({ name, email, password })
+        .insert({ name, email, status, notes })
         .returning('*') // This returns the newly inserted user
         .then(user => {
             res.status(201).send({
