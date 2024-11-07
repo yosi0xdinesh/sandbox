@@ -65,7 +65,6 @@ exports.updateData = (req, res) => {
         const columnName = req.body.columnName;
 
         let data = {
-            id: entryId,
             [columnName]: editedValue,
         };
 
