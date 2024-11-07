@@ -1,4 +1,18 @@
-const knex = require('../../config/database');
+
+const Knex = require('knex');
+
+const { DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT } = process.env;
+
+const knex = Knex({
+    client: 'mysql',
+    connection: {
+        host: DATABASE_HOST, // Database host
+        user: DATABASE_USER, // Database user
+        port: DATABASE_PORT, // Database port
+        password: DATABASE_PASSWORD, // Database password
+        database: DATABASE_NAME // Database name
+    }
+}); 
 
 // Display a simple home message
 exports.indexFun = (req, res) => {
