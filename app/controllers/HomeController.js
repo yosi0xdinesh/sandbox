@@ -68,24 +68,13 @@ exports.updateData = (req, res) => {
             [columnName]: editedValue,
         };
 
-        User.update(data, {
-            where: { id: entryId }
-        })
-            .then(result => {
-                if (result[0] === 0) {
-                    return res.status(404).send({
-                        message: "User not found or no changes made"
-                    });
-                }
-                res.status(200).send({
-                    message: "User updated successfully"
-                });
-            })
-            .catch(err => {
-                res.status(500).send({
-                    message: "Error updating user: " + err.message
-                });
-            });
+		User.update(data, {
+			where: { id: entryId }
+		}).then(() => {
+			console.log("User updated successfully.");
+		}).catch(error => {
+			console.error("Error updating user:", error);
+		}) 
     } catch (err) {
         res.status(500).send({
             message: "Error in updateData: " + err.message
