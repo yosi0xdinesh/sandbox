@@ -5,6 +5,7 @@ const HomeController = require('../app/controllers/HomeController');
 
 router.put('/changeData', HomeController.updateData);
 router.get('/getUsers', HomeController.getAllUsers);
+router.post('/addUser', HomeController.getAllUsers);
 router.get('/', HomeController.indexFun);
 
 module.exports = router;
