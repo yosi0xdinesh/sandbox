@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const knex = require('../../config/database');
 
 // Display a simple home message
 exports.indexFun = (req, res) => {
@@ -10,11 +10,13 @@ exports.indexFun = (req, res) => {
 exports.createUser = (req, res) => {
     const { name, email, password } = req.body;
 
-    User.create({ name, email, password })
+    knex('users') // Assuming 'users' is the table name in your DB
+        .insert({ name, email, password })
+        .returning('*') // This returns the newly inserted user
         .then(user => {
             res.status(201).send({
                 message: "User created successfully",
-                user
+                user: user[0] // The returned value is an array, so we access the first item
             });
         })
         .catch(err => {
@@ -26,7 +28,8 @@ exports.createUser = (req, res) => {
 
 // Retrieve all users
 exports.getAllUsers = (req, res) => {
-    User.findAll()
+    knex('users') // Assuming 'users' is the table name
+        .select('*')
         .then(users => {
             res.status(200).send(users);
         })
@@ -41,7 +44,9 @@ exports.getAllUsers = (req, res) => {
 exports.getUserById = (req, res) => {
     const userId = req.params.id;
 
-    User.findByPk(userId)
+    knex('users') // Assuming 'users' is the table name
+        .where({ id: userId })
+        .first() // This will return only one record
         .then(user => {
             if (!user) {
                 return res.status(404).send({
@@ -68,13 +73,24 @@ exports.updateData = (req, res) => {
             [columnName]: editedValue,
         };
 
-		User.update(data, {
-			where: { id: entryId }
-		}).then(() => {
-			console.log("User updated successfully.");
-		}).catch(error => {
-			console.error("Error updating user:", error);
-		}) 
+        knex('users') // Assuming 'users' is the table name
+            .where({ id: entryId })
+            .update(data)
+            .then(result => {
+                if (result === 0) {
+                    return res.status(404).send({
+                        message: "User not found"
+                    });
+                }
+                res.status(200).send({
+                    message: "User updated successfully"
+                });
+            })
+            .catch(error => {
+                res.status(500).send({
+                    message: "Error updating user: " + error.message
+                });
+            });
     } catch (err) {
         res.status(500).send({
             message: "Error in updateData: " + err.message
@@ -86,9 +102,9 @@ exports.updateData = (req, res) => {
 exports.deleteUser = (req, res) => {
     const userId = req.params.id;
 
-    User.destroy({
-        where: { id: userId }
-    })
+    knex('users') // Assuming 'users' is the table name
+        .where({ id: userId })
+        .del() // This will delete the user
         .then(result => {
             if (result === 0) {
                 return res.status(404).send({

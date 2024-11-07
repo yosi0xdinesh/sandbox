@@ -14,7 +14,7 @@ const router = express.Router();
 
 //Loading Routes
 const webRoutes = require('./routes/web');
-const sequelize = require('./config/database');
+const knex = require('./config/database');
 // const errorController = require('./app/controllers/ErrorController');
 
 env.config();
@@ -39,13 +39,4 @@ app.use(express.json())
 
 app.use(webRoutes);
 // app.use(errorController.pageNotFound);
-
-sequelize
-	.sync()
-	.then(() => {
-		app.listen(process.env.PORT);
-		console.log("App listening on port " + process.env.PORT);
-	})
-	.catch(err => {
-		console.log(err);
-	});
+ 
