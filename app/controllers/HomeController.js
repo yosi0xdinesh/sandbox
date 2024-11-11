@@ -18,7 +18,7 @@ const knex = Knex({
 // Display a simple home message
 exports.indexFun = (req, res) => {
     res.type('html');
-    res.send('Home');
+    res.send('Home test');
 };
 
 // Create a new user
