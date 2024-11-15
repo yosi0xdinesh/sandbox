@@ -25,7 +25,7 @@ exports.indexFun = (req, res) => {
 exports.createUser = (req, res) => {
     const { name, email, status, notes } = req.body;
 
-    knex('apis') // Assuming 'apis' is the table name in your DB
+    knex('apis')  in your DB
         .insert({ name, email, status, notes })
         .returning('*') // This returns the newly inserted user
         .then(user => {
@@ -43,7 +43,7 @@ exports.createUser = (req, res) => {
 
 // Retrieve all users
 exports.getAllUsers = (req, res) => {
-    knex('apis') // Assuming 'apis' is the table name
+    knex('apis') 
         .select('*')
         .then(users => {
             res.status(200).send(users);
@@ -59,9 +59,9 @@ exports.getAllUsers = (req, res) => {
 exports.getUserById = (req, res) => {
     const userId = req.params.id;
 
-    knex('apis') // Assuming 'apis' is the table name
+    knex('apis') 
         .where({ id: userId })
-        .first() // This will return only one record
+        .first() 
         .then(user => {
             if (!user) {
                 return res.status(404).send({
@@ -80,14 +80,22 @@ exports.getUserById = (req, res) => {
 // Update user data
 exports.updateData = (req, res) => {
     try {
-        const entryId = req.body.id;
+        // const entryId = req.body.id;
+        const provider_id = req.body.provider_id;
+        const patient_id = req.body.patient_id;
+        const appointment_id = req.body.appointment_id;
         // const editedValue = req.body.editedValue;
         // const columnName = req.body.columnName;
-
+        // var data = {
+        //     provider_id: provider_id,
+        //     patient_id: patient_id,
+        //     appointment_id: appointment_id,
+        //     [columnName]: editedValue,  
+        // };
         let data = req.body;
 
-        knex('apis') // Assuming 'apis' is the table name
-            .where({ id: entryId })
+        knex('apis') 
+            .where({ provider_id: provider_id, patient_id:patient_id, appointment_id:appointment_id  })
             .update(data)
             .then(result => {
                 if (result === 0) {
@@ -115,7 +123,7 @@ exports.updateData = (req, res) => {
 exports.deleteUser = (req, res) => {
     const userId = req.params.id;
 
-    knex('apis') // Assuming 'apis' is the table name
+    knex('apis') 
         .where({ id: userId })
         .del() // This will delete the user
         .then(result => {
