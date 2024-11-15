@@ -81,7 +81,7 @@ exports.getUserById = (req, res) => {
 exports.updateData = (req, res) => {
     try {
         // const entryId = req.body.id;
-        const provider_id = req.body.provider_id;
+        const practice_id = req.body.practice_id;
         const patient_id = req.body.patient_id;
         const appointment_id = req.body.appointment_id;
         // const editedValue = req.body.editedValue;
@@ -95,7 +95,7 @@ exports.updateData = (req, res) => {
         let data = req.body;
 
         knex('apis') 
-            .where({ provider_id: provider_id, patient_id:patient_id, appointment_id:appointment_id  })
+            .where({ practice_id: practice_id, patient_id:patient_id, appointment_id:appointment_id  })
             .update(data)
             .then(result => {
                 if (result === 0) {
