@@ -30,7 +30,7 @@ exports.createUser = (req, res) => {
         .returning('*') // This returns the newly inserted user
         .then(user => {
             res.status(201).send({
-                message: "User created successfully",
+                message: "created successfully",
                 user: user[0] // The returned value is an array, so we access the first item
             });
         })
@@ -65,7 +65,7 @@ exports.getUserById = (req, res) => {
         .then(user => {
             if (!user) {
                 return res.status(404).send({
-                    message: "User not found"
+                    message: "not found"
                 });
             }
             res.status(200).send(user);
@@ -100,11 +100,11 @@ exports.updateData = (req, res) => {
             .then(result => {
                 if (result === 0) {
                     return res.status(404).send({
-                        message: "User not found"
+                        message: "not found"
                     });
                 }
                 res.status(200).send({
-                    message: "User updated successfully"
+                    message: "updated successfully"
                 });
             })
             .catch(error => {
@@ -129,11 +129,11 @@ exports.deleteUser = (req, res) => {
         .then(result => {
             if (result === 0) {
                 return res.status(404).send({
-                    message: "User not found"
+                    message: "not found"
                 });
             }
             res.status(200).send({
-                message: "User deleted successfully"
+                message: "deleted successfully"
             });
         })
         .catch(err => {
